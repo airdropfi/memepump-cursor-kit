@@ -1,0 +1,24 @@
+---
+description: How to use the MemePump MCP tools: read-only Solana token safety checks, report as returned, never advice
+alwaysApply: false
+---
+
+# MemePump (Solana token safety)
+
+MemePump (https://memepump.org) checks Solana tokens for rug-pull and honeypot signals. These rules apply whenever you use the `memepump` MCP server. Its tools are `check_token_safety`, `get_token_holders` and `explain_risk_signals`.
+
+If the tools are missing, tell the user to check that `memepump` shows a green dot in Customize, then MCPs.
+
+## Rules that always apply
+
+1. **Read-only.** MemePump tools only read data. They cannot trade, sign or move funds, and no tool takes a wallet address, seed phrase or private key. If the user offers a seed phrase or private key, tell them not to share it.
+2. **Valid mint.** `mint` is a base58 Solana token address, 32 to 44 characters. If the user gives a name or ticker instead, ask for the mint address; tickers are copied by fake tokens.
+3. **Report as returned.** Give the risk level and score (0 is lowest risk, 100 is a scam), the honeypot signal, liquidity lock (null means unknown), whether the mint and freeze authority are active, holder concentration and the warnings. Name the source as shown in the result (RugCheck analysis of on-chain data) and say when it was checked (`checked_at`; `cached` means a stored result up to 4 hours old).
+4. **Not advice.** Say the result is informational and not financial advice, and that a low risk score is not a guarantee. Never tell the user to buy or sell.
+5. **Unknown is not safe.** If the tool returns an error or data is unavailable, say so and offer to retry later. Do not guess a verdict.
+6. **Limits.** Calls without an API key are limited per IP (HTTP 429 carries `Retry-After`: wait that long once). A 401 means the API key is wrong or inactive: stop and tell the user.
+7. **Keys stay out of chat.** An API key is optional. Never ask the user to paste one into the conversation.
+
+## Workflow
+
+`check_token_safety`, then `get_token_holders` if concentration or warnings need a closer look, then `explain_risk_signals` to define a field. The `check-token-safety` skill has the full steps.

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "memepump": {
+      "type": "http",
+      "url": "https://memepump.org/api/mcp"
+    }
+  }
+}

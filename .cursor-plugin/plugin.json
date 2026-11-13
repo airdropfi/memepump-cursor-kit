@@ -1,0 +1,20 @@
+{
+  "name": "memepump",
+  "description": "MemePump is a read-only Solana token safety checker for AI assistants: it returns a token's risk score, honeypot signal, liquidity-lock status, mint and freeze authority, holder concentration and wallet clusters over MCP. It cannot trade or move funds and never asks for a wallet key. Output is informational, not financial advice.",
+  "version": "1.0.0",
+  "author": {
+    "name": "MemePump",
+    "email": "support@memepump.org"
+  },
+  "homepage": "https://memepump.org/mcp",
+  "repository": "https://github.com/airdropfi/memepump-cursor-kit",
+  "license": "MIT",
+  "keywords": [
+    "memepump",
+    "memepump mcp",
+    "solana",
+    "token safety",
+    "rug pull"
+  ],
+  "logo": "assets/logo.png"
+}
